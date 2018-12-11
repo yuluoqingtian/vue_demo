@@ -1,7 +1,7 @@
 <template>
   <li class="list-group-item">
     <div class="handle">
-      <a href="javascript:;">删除</a>
+      <a href="javascript:;"  @click="deleteItem">删除</a>
     </div>
     <p class="user"><span >{{comment.name}}</span><span>说:</span></p>
     <p class="centence">{{comment.content}}</p>
@@ -12,9 +12,19 @@
   export default {
     //这种接收参数的方法制订了属性名和属性值
     props:{
-      comment:Object
+      comment:Object,
+      comments:Object,
+      index:Number
     },
-    name: 'item'
+    name: 'item',
+    methods:{
+      deleteItem(index){
+        const comments = this.comments
+        const i = this.index
+        comments.splice(i,1)
+
+      }
+    }
   }
 </script>
 

@@ -11,7 +11,7 @@
     </header>
     <div class="container">
       <!--将组件代码拆分至对应的vue组件中之后，要在App中引入拆分出去的组件，即List和Add-->
-      <Add ></Add>
+      <Add :AddItem="AddItem"></Add>
       <List :comments="comments"></List>
     </div>
   </div>
@@ -26,20 +26,24 @@
   import List from './components/List'
 
   export default {
-    data(){
-      return{
-        comments:[
+    data () {
+      return {
+        comments: [
           {
-            name:'小明',
-            content:"vue so easy!!"
+            name: '小明',
+            content: 'vue so easy!!'
           },
           {
-            name:'小丽',
-            content:"吔屎啦你"
+            name: '小丽',
+            content: '吔屎啦你'
           },
           {
-            name:"宋欢",
-            content:"呵呵"
+            name: '宋欢',
+            content: '呵呵'
+          },
+          {
+            name: '肖航',
+            content: '我是吴彦祖'
           }
         ]
       }
@@ -48,6 +52,13 @@
       Add,
       List
     },
+    methods: {
+      AddItem (name, content) {
+        const comments = this.comments
+        const comment = {name:name,content:content}
+        comments.unshift(comment)
+      }
+    }
 
   }
 </script>
