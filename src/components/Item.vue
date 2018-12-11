@@ -13,7 +13,7 @@
     //这种接收参数的方法制订了属性名和属性值
     props:{
       comment:Object,
-      comments:Object,
+      comments:Array,
       index:Number
     },
     name: 'item',

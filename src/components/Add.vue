@@ -33,6 +33,8 @@
         const name = this.name
         const content = this.content
         this.AddItem(name,content)
+        this.name=''
+        this.content=''
       }
     }
   }

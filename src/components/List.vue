@@ -12,7 +12,7 @@
 <script>
   import Item from './Item'
   export default {
-    //声明接收属性：这个属性就会
+    //声明接收属性：这个属性就会成为组件对象的属性
     props:['comments'],
     name: 'List',
     components:{
