@@ -1,7 +1,7 @@
 # vue_demo
 
 > A Vue.js project
-
+#### 一个用来练手的vue网页，使用了vue组件化开发的思想。
 ## Build Setup
 
 ``` bash
