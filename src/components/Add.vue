@@ -32,6 +32,10 @@
       add(){
         const name = this.name
         const content = this.content
+        if (name==null||content==null||name===''||content==='') {
+          window.alert("姓名或评论不能为空！")
+          return
+        }
         this.AddItem(name,content)
         this.name=''
         this.content=''

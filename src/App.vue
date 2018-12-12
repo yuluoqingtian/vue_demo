@@ -12,7 +12,7 @@
     <div class="container">
       <!--将组件代码拆分至对应的vue组件中之后，要在App中引入拆分出去的组件，即List和Add-->
       <Add :AddItem="AddItem"></Add>
-      <List :comments="comments"></List>
+      <List :comments="comments" :deleteItem="deleteItem"></List>
     </div>
   </div>
 </template>
@@ -57,6 +57,12 @@
         const comments = this.comments
         const comment = {name:name,content:content}
         comments.unshift(comment)
+      },
+
+      deleteItem(index){
+        // alert(index)
+        const comments = this.comments
+        comments.splice(index,1)
       }
     }
 
