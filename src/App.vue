@@ -1,74 +1,56 @@
 <template>
-  <div>
-    <header class="site-header jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1>请发表对Vue的评论</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="container">
-      <!--将组件代码拆分至对应的vue组件中之后，要在App中引入拆分出去的组件，即List和Add-->
-      <Add :AddItem="AddItem"></Add>
-      <List :comments="comments" :deleteItem="deleteItem"></List>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <TodoHeader :addTodo="addTodo"></TodoHeader>
+      <TodoList :todos="todos"></TodoList>
+      <TodoFooter></TodoFooter>
     </div>
   </div>
 </template>
 
 <script>
-
-  //1.引入组件
-  //2.映射成标签
-
-  import Add from './components/Add'
-  import List from './components/List'
+  import TodoHeader from './components/TodoHeader'
+  import TodoList from './components/TodoList'
+  import TodoFooter from './components/TodoFooter'
 
   export default {
+    name: 'App',
+
     data () {
       return {
-        comments: [
-          {
-            name: '小明',
-            content: 'vue so easy!!'
-          },
-          {
-            name: '小丽',
-            content: '吔屎啦你'
-          },
-          {
-            name: '宋欢',
-            content: '呵呵'
-          },
-          {
-            name: '肖航',
-            content: '我是吴彦祖'
-          }
+        todos: [
+          {title: '吃饭', complete: false},
+          {title: '睡觉', complete: true},
+          {title: 'coding', complete: false}
         ]
       }
     },
-    components: {
-      Add,
-      List
-    },
-    methods: {
-      AddItem (name, content) {
-        const comments = this.comments
-        const comment = {name:name,content:content}
-        comments.unshift(comment)
-      },
 
-      deleteItem(index){
-        // alert(index)
-        const comments = this.comments
-        comments.splice(index,1)
+    methods:{
+      addTodo(todo){
+        this.todos.unshift(todo)
       }
-    }
+    },
 
+    components: {
+      TodoHeader,
+      TodoList,
+      TodoFooter
+    }
   }
 </script>
 
 <style scoped>
+  /*app*/
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 
 </style>
