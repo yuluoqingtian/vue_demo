@@ -1,18 +1,46 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox"/>
+      <input type="checkbox" v-model="isAllcheck"/>
     </label>
     <span>
-          <span>已完成0</span> / 全部2
+          <span>{{completeSize}}</span> / {{todos.length}}
         </span>
-    <button class="btn btn-danger">清除已完成任务</button>
+    <!--标签里可以直接调用传进来的方法，不用另写一个方法调用-->
+    <button class="btn btn-danger" @click="deleteCompleteTodos" v-show="completeSize">清除已完成任务</button>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'TodoFooter'
+    name: 'TodoFooter',
+    props: {
+      todos: Array,
+      deleteCompleteTodos: Function,
+      selectAllTodos: Function
+    },
+    computed: {
+      completeSize () {
+        return this.todos.reduce((preTotal, todo) => preTotal + (todo.complete ? 1 : 0), 0)
+      },
+      isAllcheck: {
+        get () {
+          if (this.completeSize === this.todos.length && this.todos.length > 0) {
+            return true
+          } else {
+            return false
+          }
+        },
+        set (value) {
+          this.selectAllTodos(value)
+        }
+      }
+    },
+    data () {
+      return {}
+    },
+    methods: {},
+
   }
 </script>
 
