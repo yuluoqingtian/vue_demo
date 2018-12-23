@@ -1,65 +1,41 @@
 <template>
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <TodoHeader :addTodo="addTodo"></TodoHeader>
-      <TodoList :todos="todos" :deleteTodo="deleteTodo"></TodoList>
-      <TodoFooter :todos="todos" :deleteCompleteTodos="deleteCompleteTodos" :selectAllTodos="selectAllTodos"></TodoFooter>
+  <div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header"><h2>Router Test</h2></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+          <router-link to="/about" class="list-group-item">About</router-link>
+          <router-link to="/home" class="list-group-item">Home</router-link>
+
+
+          <!--<a href="#/about" class="list-group-item router-link-exact-active router-link-active">About</a>-->
+          <!--<a href="#/home" class="list-group-item">Home</a>-->
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel-body">
+
+              <router-view></router-view>
+
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import TodoHeader from './components/TodoHeader'
-  import TodoList from './components/TodoList'
-  import TodoFooter from './components/TodoFooter'
+  export default {}
 
-  export default {
-    name: 'App',
 
-    data () {
-      return {
-        todos: [
-          {title: '吃饭', complete: false},
-          {title: '睡觉', complete: true},
-          {title: 'coding', complete: false}
-        ]
-      }
-    },
-
-    methods: {
-      addTodo (todo) {
-        this.todos.unshift(todo)
-      },
-      deleteTodo (index) {
-        this.todos.splice(index, 1)
-      },
-      deleteCompleteTodos () {
-        this.todos = this.todos.filter(todo => !todo.complete)
-      },
-      selectAllTodos (check) {
-        this.todos.forEach(todo => todo.complete = check)
-      }
-    },
-
-    components: {
-      TodoHeader,
-      TodoList,
-      TodoFooter
-    }
-  }
 </script>
 
 <style scoped>
-  /*app*/
-  .todo-container {
-    width: 600px;
-    margin: 0 auto;
-  }
-
-  .todo-container .todo-wrap {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
 
 </style>

@@ -9,7 +9,7 @@
     name: 'TodoHeader',
 
     props: {
-      addTodo: Function
+      //addTodo: Function
     },
 
     data () {
@@ -34,7 +34,8 @@
         }
 
         //3、添加到todos
-        this.addTodo(todo)
+        //this.addTodo(todo)
+        this.$emit('addTodo',todo)
 
         //4、清除输入
         this.title = ''
