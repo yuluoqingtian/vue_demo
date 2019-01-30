@@ -6,11 +6,12 @@
 
 <script>
   import TodoItem from './TodoItem'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'TodoList',
-    props: {
-      todos: Array,
+    computed: {
+      ...mapState(['todos'])
     },
     components: {
       TodoItem

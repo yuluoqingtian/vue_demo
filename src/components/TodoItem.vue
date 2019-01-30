@@ -35,13 +35,13 @@
         }
       },
       deleteItem () {
-        const {todo, index, deleteTodo} = this
+        const {todo, index} = this
         if (window.confirm('确定删除' + todo.title + '?')) {
           this.isShow=false
           //deleteTodo(index)
           //alert("删除成功")
           //发布消息
-          PubSub.publish('deleteTodo',index)
+          this.$store.dispatch("deleteTodo",index)
 
         }
       }
