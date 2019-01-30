@@ -9,7 +9,6 @@
 </template>
 
 <script>
-  import PubSub from 'pubsub-js'
   export default {
     name: 'TodoItem',
     props: {

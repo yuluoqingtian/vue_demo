@@ -13,7 +13,6 @@
 </template>
 
 <script>
-  import PubSub from 'pubsub-js'
   import TodoHeader from './components/TodoHeader'
   import TodoList from './components/TodoList'
   import TodoFooter from './components/TodoFooter'
@@ -57,10 +56,7 @@
       }
     },
     mounted(){
-      //订阅消息
-      PubSub.subscribe('deleteTodo',(msg,index) =>{
-        this.deleteTodo(index)
-      })
+      this.$store.dispatch('reqTodos')
     }
 
 

@@ -1,10 +1,10 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" v-model="isAllcheck"/>
+      <input type="checkbox" v-model="isAllCheck"/>
     </label>
     <span>
-          <span>{{completeSize}}</span> / {{todos.length}}
+          <span>已完成{{completeCount}}</span> / 总共{{totalCount}}
         </span>
     <!--标签里可以直接调用传进来的方法，不用另写一个方法调用-->
     <button class="btn btn-danger" @click="deleteCompleteTodos" v-show="completeSize">清除已完成任务</button>
@@ -12,34 +12,32 @@
 </template>
 
 <script>
+  import {mapGetters,mapActions} from 'vuex'
+
   export default {
     name: 'TodoFooter',
-    props: {
-      todos: Array,
-      deleteCompleteTodos: Function,
-      selectAllTodos: Function
-    },
     computed: {
-      completeSize () {
-        return this.todos.reduce((preTotal, todo) => preTotal + (todo.complete ? 1 : 0), 0)
-      },
-      isAllcheck: {
+      ...mapGetters(['totalCount', 'completeCount']),
+
+      isAllCheck: {
         get () {
-          if (this.completeSize === this.todos.length && this.todos.length > 0) {
-            return true
-          } else {
-            return false
-          }
+          return this.$store.getters.isAllSelected
         },
         set (value) {
-          this.selectAllTodos(value)
+          // this.selectAllTodos(value)
+          this.$store.dispatch('selectAllTodos',value)
         }
+      },
+      completeSize(){
+        return true
       }
     },
     data () {
       return {}
     },
-    methods: {},
+    methods: {
+      ...mapActions(['deleteCompleteTodos'])
+    },
 
   }
 </script>
