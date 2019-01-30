@@ -8,13 +8,9 @@
   export default {
     name: 'TodoHeader',
 
-    props: {
-      //addTodo: Function
-    },
-
     data () {
       return {
-        title: ''
+        title: '' //  组件内部使用的状态，不用交给vuex管理
       }
     },
 
@@ -35,7 +31,7 @@
 
         //3、添加到todos
         //this.addTodo(todo)
-        this.$emit('addTodo',todo)
+       this.$store.dispatch('addTodo',todo)
 
         //4、清除输入
         this.title = ''
